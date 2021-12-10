@@ -26,6 +26,9 @@ class Miniplayer extends StatefulWidget {
   ///Provides a builder with useful information
   final MiniplayerBuilder builder;
 
+  /// Allow the user to tap outside the miniplayer to dismiss it
+  final bool barrierDismiss;
+
   ///Option to set the animation curve
   final Curve curve;
 
@@ -55,6 +58,7 @@ class Miniplayer extends StatefulWidget {
     required this.minHeight,
     required this.maxHeight,
     required this.builder,
+    this.barrierDismiss = true,
     this.curve = Curves.easeOut,
     this.elevation = 0,
     this.backgroundColor = const Color(0x70000000),
@@ -175,7 +179,11 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
             children: [
               if (_percentage > 0)
                 GestureDetector(
-                  onTap: () => _animateToHeight(widget.minHeight),
+                  onTap: () {
+                    if (widget.barrierDismiss) {
+                      _animateToHeight(widget.minHeight);
+                    }
+                  },
                   child: Opacity(
                     opacity: borderDouble(
                         minRange: 0.0, maxRange: 1.0, value: _percentage),
