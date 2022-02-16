@@ -105,10 +105,12 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
     if (_animationController != null) {
       _animationController!.dispose();
     }
+
     _animationController = AnimationController(
       vsync: this,
       duration: duration ?? widget.duration,
     );
+
     _animationController!.addStatusListener(_statusListener);
     animating = false;
   }
@@ -186,7 +188,10 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                   },
                   child: Opacity(
                     opacity: borderDouble(
-                        minRange: 0.0, maxRange: 1.0, value: _percentage),
+                      minRange: 0.0,
+                      maxRange: 1.0,
+                      value: _percentage,
+                    ),
                     child: Container(color: widget.backgroundColor),
                   ),
                 ),
@@ -197,13 +202,17 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                   child: GestureDetector(
                     child: ValueListenableBuilder(
                       valueListenable: dragDownPercentage,
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
+                      builder: (
+                        BuildContext context,
+                        double value,
+                        Widget? child,
+                      ) {
                         return Opacity(
                           opacity: borderDouble(
-                              minRange: 0.0,
-                              maxRange: 1.0,
-                              value: 1 - value * 0.8),
+                            minRange: 0.0,
+                            maxRange: 1.0,
+                            value: 1 - value * 0.8,
+                          ),
                           child: Transform.translate(
                             offset: Offset(0.0, widget.minHeight * value * 0.5),
                             child: child,
@@ -211,17 +220,19 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                         );
                       },
                       child: Material(
+                        type: MaterialType.transparency,
                         child: Container(
                           constraints: BoxConstraints.expand(),
                           child: widget.builder(height, _percentage),
                           decoration: BoxDecoration(
                             boxShadow: <BoxShadow>[
-                              BoxShadow(
+                              if (widget.elevation > 0)
+                                BoxShadow(
                                   color: Colors.black45,
                                   blurRadius: widget.elevation,
-                                  offset: Offset(0.0, 4))
+                                  offset: Offset(0.0, 4),
+                                ),
                             ],
-                            color: Theme.of(context).canvasColor,
                           ),
                         ),
                       ),
@@ -260,9 +271,10 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                       PanelState snap = PanelState.MIN;
 
                       final _percentageMax = percentageFromValueInRange(
-                          min: widget.minHeight,
-                          max: widget.maxHeight,
-                          value: _dragHeight);
+                        min: widget.minHeight,
+                        max: widget.maxHeight,
+                        value: _dragHeight,
+                      );
 
                       ///Started from expanded state
                       if (_startHeight > widget.minHeight) {

@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "characters",
-      "rootUri": "file:///Users/stone/Development/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0",
+      "rootUri": "file:///Users/stone/Development/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -39,9 +39,9 @@
     },
     {
       "name": "vector_math",
-      "rootUri": "file:///Users/stone/Development/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0",
+      "rootUri": "file:///Users/stone/Development/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "miniplayer",
@@ -50,7 +50,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-12-10T18:32:58.266979Z",
+  "generated": "2022-02-16T18:08:04.656109Z",
   "generator": "pub",
-  "generatorVersion": "2.14.4"
+  "generatorVersion": "2.15.1"
 }
